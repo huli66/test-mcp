@@ -1,0 +1,27 @@
+{
+  "name": "test-mcp",
+  "version": "1.0.0",
+  "description": "",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "inspect": "mcp-inspector node src/server.ts",
+    "inspect:cli": "mcp-inspector --cli node src/server.ts --method tools/list",
+    "server": "node src/server.ts",
+    "client": "node src/client.ts"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "packageManager": "pnpm@10.32.1",
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.30.0",
+    "zod": "^4.4.3"
+  },
+  "devDependencies": {
+    "@modelcontextprotocol/inspector": "^2.2.0",
+    "@types/node": "^26.2.0",
+    "typescript": "^7.0.2"
+  }
+}

@@ -20,15 +20,20 @@
     "inspect": "mcp-inspector node src/server.ts",
     "inspect:cli": "mcp-inspector --cli node src/server.ts --method tools/list",
     "server": "node src/server.ts",
-    "client": "node --env-file=.env src/github-client.ts"
+    "client": "node --env-file=.env src/github-client.ts",
+    "server:hono": "node src/hono-server.ts"
   },
   "dependencies": {
+    "@hono/node-server": "^2.1.1",
     "@modelcontextprotocol/sdk": "^1.30.0",
+    "hono": "^4.13.2",
+    "jsonwebtoken": "^9.0.3",
     "openai": "^7.4.0",
     "zod": "^4.4.3"
   },
   "devDependencies": {
     "@modelcontextprotocol/inspector": "^2.2.0",
+    "@types/jsonwebtoken": "^9.0.10",
     "@types/node": "^26.2.0",
     "husky": "^9.1.7",
     "lint-staged": "^17.3.0",

@@ -2,6 +2,9 @@
   "name": "test-mcp",
   "version": "1.0.0",
   "description": "",
+  "keywords": [],
+  "license": "ISC",
+  "author": "",
   "type": "module",
   "main": "index.js",
   "scripts": {
@@ -19,10 +22,6 @@
     "server": "node src/server.ts",
     "client": "node src/client.ts"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "packageManager": "pnpm@10.32.1",
   "dependencies": {
     "@modelcontextprotocol/sdk": "^1.30.0",
     "zod": "^4.4.3"
@@ -36,5 +35,6 @@
     "oxlint": "^1.78.0",
     "tsc": "^2.0.4",
     "typescript": "^7.0.2"
-  }
+  },
+  "packageManager": "pnpm@10.32.1"
 }

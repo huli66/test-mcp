@@ -1,11 +1,11 @@
-import { McpServer, ResourceTemplate } from "@modelcontextprotocol/sdk/server/mcp.js";
-import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js";
-import { z } from "zod";
+import {McpServer, ResourceTemplate} from '@modelcontextprotocol/sdk/server/mcp.js';
+import {StdioServerTransport} from '@modelcontextprotocol/sdk/server/stdio.js';
 import fs from 'node:fs/promises';
+import {z} from 'zod';
 
 const server = new McpServer({
-  name: "qeubee Mcp Server",
-  version: "1.0.0",
+  name: 'qeubee Mcp Server',
+  version: '1.0.0'
 });
 
 server.registerTool(
@@ -17,7 +17,7 @@ server.registerTool(
       location: z.string().describe('The location to get weather for')
     }
   },
-  async ({ location }) => {
+  async ({location}) => {
     const weatherData = await getWeatherData(location);
 
     return {
@@ -27,9 +27,9 @@ server.registerTool(
           text: `Temperature: ${weatherData.temperature} °C, Condition: ${weatherData.condition}`
         }
       ]
-    }
+    };
   }
-)
+);
 
 server.registerTool(
   'forecastTool',
@@ -41,7 +41,7 @@ server.registerTool(
       days: z.number().int().min(1).max(7).describe('Number of days to forecast (1-7)')
     })
   },
-  async ({ location, days }) => {
+  async ({location, days}) => {
     const forecast = await getForecastData(location, days);
 
     return {
@@ -51,13 +51,13 @@ server.registerTool(
           text: `${days}-day forecast for ${location}: ${JSON.stringify(forecast)}`
         }
       ]
-    }
+    };
   }
-)
+);
 
 server.registerResource(
   'file',
-  new ResourceTemplate("file:///{+path}", { list: undefined }),
+  new ResourceTemplate('file:///{+path}', {list: undefined}),
   {
     title: 'file',
     description: 'file path',
@@ -68,8 +68,8 @@ server.registerResource(
     try {
       text = await fs.readFile(String(path), 'utf-8');
     } catch (err) {
-      const message = err instanceof Error ? err.message : String(err)
-      text = `Error reading file: ${message}`
+      const message = err instanceof Error ? err.message : String(err);
+      text = `Error reading file: ${message}`;
     }
     return {
       contents: [
@@ -78,9 +78,9 @@ server.registerResource(
           text
         }
       ]
-    }
+    };
   }
-)
+);
 
 server.registerPrompt(
   'review-code',
@@ -89,10 +89,10 @@ server.registerPrompt(
     description: 'review a code',
     argsSchema: {
       code: z.string().describe('Code to review'),
-      language: z.string().optional().describe('programming language'),
+      language: z.string().optional().describe('programming language')
     }
   },
-  async ({ code, language }) => {
+  async ({code, language}) => {
     return {
       messages: [
         {
@@ -103,32 +103,35 @@ server.registerPrompt(
           }
         }
       ]
-    }
+    };
   }
-)
+);
 
 // 辅助函数
-async function getWeatherData(location: string): Promise<{temperature: number, condition: string, location: string}> {
+async function getWeatherData(
+  location: string
+): Promise<{temperature: number; condition: string; location: string}> {
   // 模拟 API 调用
   return {
     temperature: 72.5,
-    condition: "Sunny",
+    condition: 'Sunny',
     location: location
   };
 }
 
 async function getForecastData(location: string, days: number) {
   // 模拟 API 调用
-  return Array.from({ length: days }, (_, i) => ({
+  return Array.from({length: days}, (_, i) => ({
     day: i + 1,
     temperature: 70 + Math.floor(Math.random() * 10),
-    conditions: i % 2 === 0 ? "Sunny" : "Partly Cloudy"
+    conditions: i % 2 === 0 ? 'Sunny' : 'Partly Cloudy'
   }));
 }
 
 const transport = new StdioServerTransport();
-server.connect(transport)
-.then(() => {
-  console.error('qeubee mcp server started');
-})
-.catch(console.error);
+server
+  .connect(transport)
+  .then(() => {
+    console.error('qeubee mcp server started');
+  })
+  .catch(console.error);

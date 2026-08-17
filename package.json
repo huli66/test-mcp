@@ -20,10 +20,11 @@
     "inspect": "mcp-inspector node src/server.ts",
     "inspect:cli": "mcp-inspector --cli node src/server.ts --method tools/list",
     "server": "node src/server.ts",
-    "client": "node src/client.ts"
+    "client": "node --env-file=.env src/github-client.ts"
   },
   "dependencies": {
     "@modelcontextprotocol/sdk": "^1.30.0",
+    "openai": "^7.4.0",
     "zod": "^4.4.3"
   },
   "devDependencies": {

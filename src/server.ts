@@ -8,6 +8,8 @@ const server = new McpServer({
   version: '1.0.0'
 });
 
+// server.server.setRequestHandler() // 使用底层接口来声明工具
+
 server.registerTool(
   'weatherTool',
   {
@@ -34,7 +36,7 @@ server.registerTool(
 server.registerTool(
   'forecastTool',
   {
-    title: 'add params',
+    title: 'orecast weather',
     description: 'add location and days',
     inputSchema: z.object({
       location: z.string().describe('The location to get forecast for'),
@@ -49,6 +51,31 @@ server.registerTool(
         {
           type: 'text',
           text: `${days}-day forecast for ${location}: ${JSON.stringify(forecast)}`
+        }
+      ]
+    };
+  }
+);
+
+server.registerTool(
+  'add',
+  {
+    title: 'add two numbers',
+    description: 'add two numbers, return sum',
+    inputSchema: z.object({
+      a: z.number(),
+      b: z.number()
+    })
+  },
+  async ({a, b}) => {
+    const sum = a + b;
+    console.log('使用 add');
+
+    return {
+      content: [
+        {
+          type: 'text',
+          text: `add ${a} and ${b}, sum is ${sum}`
         }
       ]
     };

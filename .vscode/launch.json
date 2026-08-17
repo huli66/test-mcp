@@ -10,6 +10,13 @@
       "name": "针对 localhost 启动 Chrome",
       "url": "http://localhost:5174/bond-market/ccdc-diff-curve",
       "webRoot": "${workspaceFolder}"
+    },
+    {
+      "name": "debug mcp server",
+      "type": "node",
+      "request": "launch",
+      "program": "src/server.ts",
+      "console": "integratedTerminal"
     }
   ]
 }

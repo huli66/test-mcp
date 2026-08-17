@@ -1,0 +1,9 @@
+{
+  "inputs": [],
+  "servers": {
+    "hello-mcp": {
+      "command": "node",
+      "args": ["src/server.ts"]
+    }
+  }
+}

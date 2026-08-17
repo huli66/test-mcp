@@ -1,0 +1,33 @@
+{
+  "compilerOptions": {
+    "target": "es2020",
+    "module": "es2022",
+    "allowImportingTsExtensions": true,
+    "sourceMap": true,
+    "skipLibCheck": true,
+    "noEmit": true,
+    "moduleResolution": "bundler",
+    "types": ["node"]
+  },
+  "include": [
+    "src/**/*.ts",
+    "src/**/*.vue",
+    "tests/**/*.ts",
+    "vite.config.ts",
+    "oxlint.config.ts",
+    "oxfmt.config.ts",
+    "lint-staged.config.ts"
+  ],
+  "exclude": [
+    "node_modules",
+    "dist",
+    "dist-*",
+    "build",
+    "coverage",
+    "docs",
+    "public",
+    "public/charting_library",
+    "charting_library",
+    "**/charting_library/**"
+  ]
+}

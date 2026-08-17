@@ -5,7 +5,15 @@
   "type": "module",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "prepare": "husky",
+    "fmt": "time oxfmt --check .",
+    "fmt:fix": "time oxfmt --write .",
+    "lint": "oxlint .",
+    "lint:fix": "oxlint . --fix",
+    "lint:staged": "lint-staged",
+    "lint:type-aware": "oxlint --type-aware",
+    "typecheck": "tsc --noEmit",
+    "check": "oxfmt --check . && oxlint && tsc --noEmit",
     "inspect": "mcp-inspector node src/server.ts",
     "inspect:cli": "mcp-inspector --cli node src/server.ts --method tools/list",
     "server": "node src/server.ts",
@@ -22,6 +30,11 @@
   "devDependencies": {
     "@modelcontextprotocol/inspector": "^2.2.0",
     "@types/node": "^26.2.0",
+    "husky": "^9.1.7",
+    "lint-staged": "^17.3.0",
+    "oxfmt": "^0.63.0",
+    "oxlint": "^1.78.0",
+    "tsc": "^2.0.4",
     "typescript": "^7.0.2"
   }
 }
